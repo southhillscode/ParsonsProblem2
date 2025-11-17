@@ -6,6 +6,54 @@ layout: default
 title: Multiple Parson's Problems on One Page
 ---
 # Parsons Practice
+<div id="sortableTrash" class="sortable-code"></div> 
+<div id="sortable" class="sortable-code"></div> 
+<div style="clear:both;"></div> 
+<p> 
+    <input id="feedbackLink" value="Get Feedback" type="button" /> 
+    <input id="newInstanceLink" value="Reset Problem" type="button" /> 
+</p> 
+<script type="text/javascript"> 
+(function(){
+  var initial = "public class U6_L3_Activity_Three\n" +
+    "{\n" +
+    "  // Write your printUn method here\n" +
+    "  public static void printUn(String[] words) \n" +
+    "  {\n" +
+    "    System.out.println();\n" +
+    "    for(int i = 0; i &lt; words.length; i++) \n" +
+    "    {\n" +
+    "      if(words[i].length() &gt;= 2) \n" +
+    "      {\n" +
+    "        if(words[i].substring(0, 2).equals(&quot;un&quot;))\n" +
+    "          System.out.println(words[i]);\n" +
+    "      }\n" +
+    "    }\n" +
+    "  }\n" +
+    "}";
+  var parsonsPuzzle = new ParsonsWidget({
+    "sortableId": "sortable",
+    "max_wrong_lines": 10,
+    "grader": ParsonsWidget._graders.LineBasedGrader,
+    "exec_limit": 2500,
+    "can_indent": true,
+    "x_indent": 10,
+    "lang": "en",
+    "show_feedback": true,
+    "trashId": "sortableTrash"
+  });
+  parsonsPuzzle.init(initial);
+  parsonsPuzzle.shuffleLines();
+  $("#newInstanceLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.shuffleLines(); 
+  }); 
+  $("#feedbackLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.getFeedback(); 
+  }); 
+})(); 
+</script>
 
 ## Parsons 1 (Line Based Grader)
 Re-arrange the blocks below so they print out "Hello World!"
